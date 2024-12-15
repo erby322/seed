@@ -1,0 +1,634 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$SEED - Neural Web6 Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="icon" href="image/123.png" type="image/png">
+    <link href="css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ff95;
+            --secondary-color: #0066ff;
+            --accent-color: #ff00ff;
+            --background: #000000;
+            --text-color: #ffffff;
+            --accent-gradient: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            --glow-shadow: 0 0 20px rgba(0, 255, 149, 0.2);
+            --card-bg: rgba(0, 255, 149, 0.03);
+            --border-color: rgba(0, 255, 149, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, rgba(0,255,149,0.1) 0%, transparent 70%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            display: none;
+        }
+
+        nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 149, 0.5);
+            animation: logoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 149, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(0, 255, 149, 0.8); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero, .docs-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-gradient);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            margin: 0.5rem;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Documentation Styles */
+        .docs-content {
+            text-align: left;
+            padding: 2rem;
+            background: var(--dark-overlay);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .docs-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+        }
+
+        .docs-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+        }
+
+        .docs-content p {
+            margin: 1rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .docs-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .docs-content li {
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--primary-color);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--dark-overlay);
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-right a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-right a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            nav, .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .footer-right a {
+                margin: 0.5rem;
+            }
+        }
+
+        /* Add new social links styles */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            box-shadow: var(--glow-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: var(--background);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 149, 0.3);
+        }
+
+        /* Add responsive grid layout for documentation */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .docs-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .docs-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .docs-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .docs-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--glow-shadow);
+        }
+
+        /* Scanning line effect for cards */
+        .docs-card::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(0, 255, 149, 0.1),
+                transparent
+            );
+            animation: scanLine 3s ease-in-out infinite;
+        }
+
+        @keyframes scanLine {
+            0% { top: -100%; }
+            100% { top: 200%; }
+        }
+
+        /* Update existing styles for better responsiveness */
+        @media (max-width: 768px) {
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0 1rem;
+            }
+
+            .social-link {
+                justify-content: center;
+            }
+
+            .docs-container {
+                padding: 1rem;
+            }
+
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .social-link img {
+            transition: filter 0.3s ease;
+        }
+        
+        .social-link:hover img {
+            filter: brightness(0) invert(0) !important;
+        }
+
+        /* Matrix background canvas */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <nav>
+        <div class="logo">SEED</div>
+        <div class="nav-links">
+            <a href="#about">Protocol</a>
+            <a href="#docs">Manual</a>
+            <a href="https://pump.fun/coin/" target="_blank" class="cta-button">Initialize</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Neural <span class="gradient-text">Web6 Intelligence</span></h1>
+            <p class="subtitle">Advanced AI agents operating autonomously on the blockchain</p>
+            
+            <!-- New prominent social links section -->
+            <div class="social-links">
+                <a href="https://x.com/Seed_ai_web6" target="_blank" class="social-link">
+                    <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    Neural Network
+                </a>
+                <a href="https://pump.fun/coin/" target="_blank" class="social-link">
+                    <img src="_next/image?url=%2Fpumpfun.png&w=48&q=75" alt="pump.fun/coin/FLfwkCVGakFa4LDS5ASKTdJQ24tU7RqGGCxwJ1gSpump" width="20" height="20" style="filter: brightness(0) invert(1);">
+                    Launch Protocol
+                </a>
+                <a href="https://dexscreener.com" target="_blank" class="social-link">
+                    <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    Market Scanner
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div class="docs-container" id="docs">
+        <div class="docs-content">
+            <h1>Neural Protocol Manual</h1>
+
+            <div class="docs-grid">
+                <div class="docs-card">
+                    <h2>Access Protocol</h2>
+                    <p>$seed access requires Neural Pass authentication. Holders gain control over our advanced AI agent network and quantum interfaces.</p>
+                    <p><a href="https://pump.fun/coin/FLfwkCVGakFa4LDS5ASKTdJQ24tU7RqGGCxwJ1gSpump" target="_blank" class="gradient-text">→ Initialize Neural Link</a></p>
+                </div>
+
+                <div class="docs-card">
+                    <h2>Neural Interface</h2>
+                    <p>Connect your quantum wallet via <span class="highlight">SYNC</span> protocol for secure neural network access. All transactions are verified through our quantum-secured smart contracts.</p>
+                </div>
+
+                <div class="docs-card">
+                    <h2>Personal Neural Agents</h2>
+                    <p>Create and control your AI constructs with capabilities including:</p>
+                    <ul>
+                        <li>Custom instruction sets</li>
+                        <li>Expandable neural memory</li>
+                        <li>Blockchain operations</li>
+                        <li>Data mining protocols</li>
+                        <li>Multi-agent coordination</li>
+                    </ul>
+                </div>
+
+                <div class="docs-card">
+                    <h2>Specialist Units</h2>
+                    <p>Access our elite network of specialized AI agents:</p>
+                    <ul>
+                        <li>DeepScan - Market intelligence</li>
+                        <li>NeuralSwift - High-speed execution</li>
+                        <li>TimeWarp - Seasonal predictions</li>
+                        <li>AlphaHunt - Opportunity detection</li>
+                        <li>QuantumArb - Advanced arbitrage</li>
+                    </ul>
+                </div>
+
+                <div class="docs-card">
+                    <h2>Operation Parameters</h2>
+                    <p>Neural agents operate within defined parameters. For optimal performance:</p>
+                    <ul>
+                        <li>Align instructions with agent capabilities</li>
+                        <li>Monitor neural memory allocation</li>
+                        <li>Verify blockchain permissions</li>
+                        <li>Maintain quantum sync status</li>
+                    </ul>
+                </div>
+
+                <div class="docs-card">
+                    <h2>Security Protocols</h2>
+                    <p>All neural operations are secured through:</p>
+                    <ul>
+                        <li>Quantum encryption</li>
+                        <li>Neural handshake verification</li>
+                        <li>Smart contract failsafes</li>
+                        <li>Multi-sig authorization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer updated with new branding -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>© 2024 seed Protocol</p>
+            </div>
+            <div class="footer-right">
+                <a href="https://x.com/Seed_ai_web6" target="_blank">Neural Feed</a>
+                <a href="https://pump.fun/coin/" target="_blank">Launch</a>
+                <a href="https://dexscreener.com" target="_blank">Scanner</a>
+                <a href="#privacy">Security</a>
+                <a href="#terms">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelector('.hero').classList.add('fade-in-element');
+        observer.observe(document.querySelector('.hero'));
+
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "web6seed_openai_chatgpt_Ai_seed".split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = new Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillStyle = `rgba(0, 255, 149, ${Math.random()})`;
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        setInterval(drawMatrix, 50);
+
+        // Add hover effect for cards
+        document.querySelectorAll('.docs-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.background = `
+                    radial-gradient(
+                        circle at ${x}px ${y}px,
+                        rgba(0, 255, 149, 0.1),
+                        var(--card-bg) 50%
+                    )
+                `;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'var(--card-bg)';
+            });
+        });
+    </script>
+</body>
+</html> 
